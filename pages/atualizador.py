@@ -34,7 +34,7 @@ with col3:
     valor = st.number_input('Digite o valor a ser atualizado: ')
     
 with col4:
-    indices = sorted(['IPCA', 'INPC', 'INCC', 'IGP-M', 'SELIC'])
+    indices = sorted(['IPCA', 'INPC', 'INCC', 'IGP-M', 'IPCA-E'])
     indice = st.selectbox('Selecione o índice: ', indices)
 
 
@@ -57,9 +57,9 @@ with col_df_1:
         st.subheader('INCC')
         dados_df = atualiza_valores(data_inicial, data_final, 192, valor)
    
-    if indice == 'SELIC':
-        st.subheader('SELIC')
-        dados_df = atualiza_valores(data_inicial, data_final, 29541, valor)
+    if indice == 'IPCA-E':
+        st.subheader('IPCA-E')
+        dados_df = atualiza_valores(data_inicial, data_final, 10764, valor)
     
     st.dataframe(dados_df, width=600)
 
