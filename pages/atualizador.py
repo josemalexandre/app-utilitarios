@@ -59,7 +59,7 @@ with col_df_1:
    
     if indice == 'SELIC':
         st.subheader('SELIC')
-        dados_df = atualiza_valores(data_inicial, data_final, 11, valor)
+        dados_df = atualiza_valores(data_inicial, data_final, 29541, valor)
     
     st.dataframe(dados_df, width=600)
 
