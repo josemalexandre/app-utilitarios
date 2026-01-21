@@ -6,6 +6,14 @@ import io
 
 warnings.filterwarnings('ignore')
 
+
+def extrair_cc(x):
+    if isinstance(x, str) and ' - ' in x:
+        return x.split(' - ')[1].strip()
+    else:
+        return np.nan
+
+
 def tratar_dados(xls):
     file_xls = pd.read_excel(xls, skiprows=3)
     file_xls = file_xls[['LJ', 'CREDOR', 'DT. PAG.', 'VALOR ']]
@@ -13,6 +21,8 @@ def tratar_dados(xls):
     file_xls['LJ'].ffill(inplace=True)
     file_xls.rename(columns={'LJ':'ORIGEM', 'DT. PAG.': 'DATA', 'VALOR ':'DÉBITO'}, inplace=True)
     file_xls.dropna(inplace=True)
+    file_xls['CENTRO DE CUSTOS'] = file_xls['ORIGEM'].apply(extrair_cc)
+    file_xls['HISTÓRICO'] = file_xls['CENTRO DE CUSTOS'] + ' - ' + file_xls['CREDOR']
 
     return file_xls
 
